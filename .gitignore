@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Sublime files
+*.sublime-project
+*.sublime-workspace
+
+# Environmental variables
+config/local*.json
+
+# Database file
+database.sqlite

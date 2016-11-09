@@ -1,0 +1,16 @@
+{
+  "facebook": {
+    "verifyToken": "VERIFY_TOKEN"
+  },
+  "db": {
+    "username": "",
+    "password": "",
+    "database": "leoboto-test",
+    "options": {
+      "host": "localhost",
+      "dialect": "postgres",
+      "port": 5433,
+      "logging": false
+    }
+  }
+}
