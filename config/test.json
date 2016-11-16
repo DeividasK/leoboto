@@ -6,13 +6,13 @@
     "verifyToken": "VERIFY_TOKEN"
   },
   "db": {
-    "username": "",
+    "username": "postgres",
     "password": "",
     "database": "leoboto_test",
     "options": {
       "host": "localhost",
       "dialect": "postgres",
-      "port": 5433,
+      "port": 5432,
       "logging": false
     }
   }
