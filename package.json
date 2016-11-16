@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=development&& node index.js",
-    "test": "set NODE_ENV=test&& mocha"
+    "test": "set NODE_ENV=test&& istanbul cover node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
     "body-parser": "^1.15.2",
     "config": "^1.24.0",
     "express": "^4.14.0",
-    "multer": "^1.2.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.24.8",
@@ -30,9 +29,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.1.2"
   },
-  "engines" : {
+  "engines": {
     "node": "6.9.1"
   }
 }

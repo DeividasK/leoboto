@@ -1,7 +1,16 @@
 language: node_js
 node_js:
-  - "node"
+  - "6"
+sudo: required
 services:
   - postgresql
+
+addons:
+  code_climate:
+    repo_token: da7223e3af7930a4aed1e10f1226d425092b4c99322ab8ed3def9498385a292b
+
 before_script:
-  - psql -c 'create database leoboto-test;' -U postgres
+  - psql -c 'create database leoboto_test;' -U postgres
+
+after_script:
+  - codeclimate-test-reporter < lcov.info

@@ -44,4 +44,4 @@ jspm_packages
 config/local*.json
 
 # Database file
-database.sqlite
+database.sqlite/coverage

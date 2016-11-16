@@ -1,11 +1,14 @@
 {
+  "app": {
+    "port": 1234
+  },
   "facebook": {
     "verifyToken": "VERIFY_TOKEN"
   },
   "db": {
     "username": "",
     "password": "",
-    "database": "leoboto-test",
+    "database": "leoboto_test",
     "options": {
       "host": "localhost",
       "dialect": "postgres",

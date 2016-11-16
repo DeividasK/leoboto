@@ -9,12 +9,6 @@ chai.use(chaiHttp)
 let Messages = require('../models').Messages
 
 describe('Messages', () => {
-  afterEach((done) => {
-    Messages.truncate().then((count) => {
-      done()
-    })
-  })
-
   describe('/GET messages', () => {
     it('should GET all the messages', (done) => {
       chai.request(server).get('/messages').end((err, res) => {
@@ -27,8 +21,16 @@ describe('Messages', () => {
   })
 
   describe('/POST messages', () => {
+
+    afterEach((done) => {
+      Messages.truncate().then((count) => {
+        done()
+      })
+    })
+
     it('should return a newly created message object', (done) => {
-      let data = { userId: 123, text: "Some random text" }
+
+      let data = { mId: 'Unique message ID', senderId: 1234, recipientId: 9876, data: "test" }
 
       chai.request(server)
         .post('/messages')
@@ -37,22 +39,24 @@ describe('Messages', () => {
           res.should.have.status(201)
           res.body
             .should.be.a('object')
-            .and.to.include.keys('id', 'userId', 'text', 'updatedAt', 'createdAt')
+            .and.to.include({ 'mId': 'Unique message ID', 'senderId': '1234', 'recipientId': '9876', 'data': 'test' })
+            .and.to.include.keys('timestamp', 'id', 'seq')
           done()
         })
     })
 
     it('should return an array of error messages if validation fails', (done) => {
-      let data = { userId: 'Non numeric ID', text: null }
+      let data = { mId: 'Unique message ID', senderId: 'not a number', recipientId: 9876 }
 
       chai.request(server)
         .post('/messages')
         .send(data)
         .end((err, res) => {
           res.should.have.status(422)
+          res.body.should.be.a('array')
           res.body.should.to.deep.equal([
-            { type: 'notNull Violation', field: 'text', value: null, text: 'text cannot be null' },
-            { type: 'Validation error', field: 'userId', value: 'Non numeric ID', text: 'Validation isNumeric failed' }
+            { type: 'notNull Violation', field: 'data', text: 'data cannot be null' },
+            { type: 'Validation error', field: 'senderId', text: 'Validation isNumeric failed' }
           ])
           done()
         })

@@ -1,4 +1,7 @@
 {
+  "app": {
+    "port": 3000
+  },
   "facebook": {
     "verifyToken": "VERIFY_TOKEN"
   },
