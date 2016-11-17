@@ -19,7 +19,7 @@ fs.readdirSync(__dirname)
 
 // Not used at the moment
 // Add all assosiactions for each model
-// Object.keys(db).forEach((modelName) => { if ("associate" in db[modelName]) db[modelName].associate(db) })
+Object.keys(db).forEach((modelName) => { if ("associate" in db[modelName]) db[modelName].associate(db) })
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize

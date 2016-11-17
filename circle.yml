@@ -10,6 +10,10 @@ general:
   artifacts:
     - "coverage/lcov-report/index.html" # Unit test coverage
 
+dependencies:
+  post:
+    - npm install -g codeclimate-test-reporter
+
 test:
   post:
     - codeclimate-test-reporter < /home/ubuntu/leoboto/coverage/lcov.info
