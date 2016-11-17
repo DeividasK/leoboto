@@ -8,4 +8,8 @@ machine:
 
 general:
   artifacts:
-    - "coverage" # Unit test coverage
+    - "coverage/lcov-report/index.html" # Unit test coverage
+
+test:
+  post:
+    - codeclimate-test-reporter < lcov.info
