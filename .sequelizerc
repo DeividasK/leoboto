@@ -1,0 +1,6 @@
+const path    = require('path')
+const config  = require('config').get('db')
+
+module.exports = {
+  'url': config.options.dialect + '://' + config.username + ':' + config.password + '@' + config.options.host + ':' + config.options.port + '/' + config.database
+}

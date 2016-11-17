@@ -2,6 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Messages = sequelize.define("Messages", {
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
+    },
     mId: {
       type: DataTypes.STRING,
       comment: "A unique message ID.",
@@ -44,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     timestamps: false,
-    tableName: 'messages'
+    freezeTableName: true
   })
 
   return Messages

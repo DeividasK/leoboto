@@ -8,13 +8,16 @@ machine:
 
 general:
   artifacts:
-    - "coverage/lcov-report/index.html" # Unit test coverage
+    - "coverage/lcov-report" # Unit test coverage
 
 dependencies:
   post:
     - npm install sequelize@3.25.0
-    - npm install -g codeclimate-test-reporter
+    - npm install -g codeclimate-test-reporter sequelize-cli
 
 test:
+  pre:
+    - sequelize db:migrate
+
   post:
     - codeclimate-test-reporter < /home/ubuntu/leoboto/coverage/lcov.info
