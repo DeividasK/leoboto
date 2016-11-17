@@ -12,4 +12,4 @@ general:
 
 test:
   post:
-    - codeclimate-test-reporter < lcov.info
+    - codeclimate-test-reporter < /home/ubuntu/leoboto/coverage/lcov.info
