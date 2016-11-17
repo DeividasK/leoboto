@@ -6,9 +6,9 @@
     "verifyToken": "VERIFY_TOKEN"
   },
   "db": {
-    "username": "postgres",
+    "username": "ubuntu",
     "password": "",
-    "database": "leoboto_test",
+    "database": "circle_test",
     "options": {
       "host": "localhost",
       "dialect": "postgres",

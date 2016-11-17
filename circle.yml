@@ -1,0 +1,11 @@
+machine:
+  # Set the timezeone - any value from /usr/share/zoneinfo/ is valid here
+  timezone:
+    Europe/Vilnius
+
+  node:
+    version: 6.9.1
+
+general:
+  artifacts:
+    - "coverage" # Unit test coverage
