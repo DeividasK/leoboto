@@ -9,7 +9,7 @@ chai.use(chaiHttp)
 let Messages = require('../models').Messages
 
 describe('Index', () => {
-  describe('/GET /', () => {
+  describe('/GET index', () => {
     it('should return a greeting', (done) => {
       chai.request(server).get('/').end((err, res) => {
         res.should.have.status(200)

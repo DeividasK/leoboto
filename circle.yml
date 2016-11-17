@@ -12,6 +12,7 @@ general:
 
 dependencies:
   post:
+    - npm install sequelize@3.25.0
     - npm install -g codeclimate-test-reporter
 
 test:

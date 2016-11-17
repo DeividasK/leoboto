@@ -9,7 +9,7 @@ chai.use(chaiHttp)
 let Messages = require('../models').Messages
 
 describe('Webhook', () => {
-  describe('/GET /webhook', () => {
+  describe('/GET webhook', () => {
     it("should return 'Invalid verify token!' if 'hub.verify_token' does not match the value in the config", (done) => {
       chai.request(server).get('/webhook?hub.verify_token=TOKEN_STRING&&hub.challenge=CHALLENGE_STRING').end((err, res) => {
         // console.log(err, res)
@@ -31,7 +31,7 @@ describe('Webhook', () => {
     })
   })
 
-  describe('/POST /webhook', () => {
+  describe('/POST webhook', () => {
     afterEach((done) => {
       Messages.truncate().then((count) => {
         done()
