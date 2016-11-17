@@ -25,4 +25,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh deividas_karzinauskas@104.199.21.108 "cd leoboto; git pull; npm install --production; sequelize db:migrate; forever restart index.js; exit"
+      - cat production-deployment-script.sh | ssh deividas_karzinauskas@104.199.21.108
