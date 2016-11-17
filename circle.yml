@@ -10,7 +10,7 @@ general:
   artifacts:
     - "coverage/lcov-report" # Unit test coverage
 
-dependencies:
+machine:
   post:
     - npm install -g codeclimate-test-reporter sequelize-cli
 
@@ -25,11 +25,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh deividas_karzinauskas@104.199.21.108 "/bin/bash << EOF
-          cd leoboto;
-          git pull;
-          npm install --production;
-          sequelize db:migrate;
-          forever restart index.js;
-          exit;
-        EOF"
+      - ssh deividas_karzinauskas@104.199.21.108 "cd leoboto; git pull; npm install --production; sequelize db:migrate; forever restart index.js; exit"
