@@ -10,8 +10,8 @@ general:
   artifacts:
     - "coverage/lcov-report" # Unit test coverage
 
-machine:
-  post:
+dependencies:
+  pre:
     - npm install -g codeclimate-test-reporter sequelize-cli
 
 test:
