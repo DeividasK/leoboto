@@ -10,35 +10,38 @@ const expect    = chai.expect
 let Facebook = require('../utilities/Facebook')
 
 describe('Facebook', () => {
-  let stub
-
-  beforeEach(() => {
-    stub = sinon.stub(graph, 'post')
+  it("should have a method 'sendMessage'", () => {
+    expect(Facebook.sendMessage).to.be.a('function')
   })
 
-  afterEach(() => {
-    stub.restore()
+  describe(".sendMessage", () => {
+    let stub
+
+    beforeEach(() => {
+      stub = sinon.stub(graph, 'post')
+      Facebook.sendMessage('hello, world!')
+    })
+
+    afterEach(() => {
+      stub.restore()
+    })
+
+    it("should send a message with a provided query", () => {
+      expect(stub.callCount).to.equal(1)
+      expect(stub.args[0][1].message.text).to.equal('hello, world!')
+    })
+
+    it("should add autoResponse 'metadata' to the message", () => {
+      expect(stub.args[0][1].metadata).to.equal(JSON.stringify({ autoResponse: true}))
+    })
+
+    it("should provide a callback for the response from the server", () => {
+      expect(stub.args[0][2]).to.be.a('function')
+    })
   })
 
   xit("should throw and error if application access token is not set (the default is left unchanged)", () => {
 
-  })
-
-  it("should have a 'sendMessage' method", () => {
-    expect(Facebook.sendMessage).to.be.a('function')
-  })
-
-  it("should send a response with a provided query", () => {
-    Facebook.sendMessage('hello, world!')
-
-    expect(stub.callCount).to.equal(1)
-    expect(stub.args[0][1].message.text).to.equal('hello, world!')
-  })
-
-  it("should add autoResponse 'metadata' to the message", () => {
-    Facebook.sendMessage('hello, world!')
-
-    expect(stub.args[0][1].metadata).to.equal(JSON.stringify({ autoResponse: true}))
   })
 
   xit("should send a random ambiguous response if the query contains a question mark", () => {

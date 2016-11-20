@@ -2,6 +2,11 @@
 
 const config = require('config')
 const graph = require('fbgraph')
+const winston = require('winston')
+
+winston.configure({
+  transports: [ new (winston.transports.File)({ filename: 'winston.log' }) ]
+})
 
 class Facebook {
   constructor () {
@@ -15,7 +20,9 @@ class Facebook {
       metadata: JSON.stringify({ autoResponse: true})
     }
 
-    graph.post("/messages", data)
+    graph.post("/me/messages", data, function(err, res) {
+      winston.log(res)
+    })
   }
 }
 
