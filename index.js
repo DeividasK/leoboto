@@ -5,7 +5,7 @@ const winston = require('winston')
 
 winston.configure({
   transports: [ new (winston.transports.File)({ filename: 'winston.log' }) ]
-});
+})
 
 const db = require('./models')
 const routes = require('./routes')

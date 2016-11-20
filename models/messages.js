@@ -46,6 +46,11 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       },
       comment: "This is a text message or a URL of an attachment."
+    },
+    autoResponse: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      comment: "Whether a message was generated automatically or not."
     }
   }, {
     timestamps: false,

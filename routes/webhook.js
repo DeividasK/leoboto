@@ -1,6 +1,9 @@
-const winston = require('winston')
-const config = require('config')
-const db = require('../models').Messages
+"use strict"
+
+const winston   = require('winston')
+const config    = require('config')
+const db        = require('../models').Messages
+const facebook  = require('../utilities/Facebook')
 
 class Webhook {
   constructor () {
@@ -21,14 +24,21 @@ class Webhook {
 
     events.forEach((event) => {
       if (event.message && event.message.text) {
-        db.create({
+        // console.log()
+        let data = {
           mId: event.message.mid,
           senderId: event.sender.id,
           recipientId: event.recipient.id,
           timestamp: event.timestamp,
           seq: event.message.seq,
           data: event.message.text
-        })
+        }
+
+        if (event.message.metadata && JSON.parse(event.message.metadata).autoResponse) { data.autoResponse = true }
+
+        db.create(data)
+
+        facebook.sendMessage(event.message.text)
       }
     })
 

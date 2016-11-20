@@ -61,6 +61,10 @@ describe('Messages', () => {
           done()
         })
     })
+
+    xit("should store bot messages with 'autoResponse' set to true", () => {
+      
+    })
   })
 
 })
