@@ -16,8 +16,10 @@ class Facebook {
   sendMessage (query) {
     let data = {
       recipient: { id: "1335307903155046" },
-      message: { text: query },
-      metadata: JSON.stringify({ autoResponse: true})
+      message: {
+        text: query,
+        metadata: JSON.stringify({ autoResponse: true})
+      }
     }
 
     graph.post("/me/messages", data, function(err, res) {

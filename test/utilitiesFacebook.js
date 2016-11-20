@@ -32,7 +32,7 @@ describe('Facebook', () => {
     })
 
     it("should add autoResponse 'metadata' to the message", () => {
-      expect(stub.args[0][1].metadata).to.equal(JSON.stringify({ autoResponse: true}))
+      expect(stub.args[0][1].message.metadata).to.equal(JSON.stringify({ autoResponse: true}))
     })
 
     it("should provide a callback for the response from the server", () => {
