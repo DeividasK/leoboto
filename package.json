@@ -6,7 +6,8 @@
   "scripts": {
     "start": "set NODE_ENV=development&& node index.js",
     "test": "set NODE_ENV=test&& istanbul cover node_modules/mocha/bin/_mocha",
-    "report-coverage": "set CODECLIMATE_REPO_TOKEN=da7223e3af7930a4aed1e10f1226d425092b4c99322ab8ed3def9498385a292b&& codeclimate-test-reporter < coverage/lcov.info"
+    "report-coverage": "set CODECLIMATE_REPO_TOKEN=da7223e3af7930a4aed1e10f1226d425092b4c99322ab8ed3def9498385a292b&& codeclimate-test-reporter < coverage/lcov.info",
+    "migrate": "./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "codeclimate-test-reporter": "^0.4.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
+    "sequelize-cli": "^2.4.0",
     "sinon": "^1.17.6"
   },
   "engines": {
