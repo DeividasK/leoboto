@@ -92,7 +92,7 @@ describe('Webhook', () => {
       })
     })
 
-    it("should call Facebook.sendMessage with message text", (done) => {
+    it("should send a response with message text", (done) => {
       chai.request(server).post('/webhook').send(dummy).end((err, res) => {
         res.should.have.status(200)
         expect(stub.calledWith('hello, world!')).to.be.true
@@ -100,15 +100,16 @@ describe('Webhook', () => {
       })
     })
 
-    it("should do nothing if message is an echo received from 'message_echoes' callback", (done) => {
+    it("should not send a response if message was sent by a page", (done) => {
       let data = Object.assign({}, dummy)
       data.entry[0].messaging[0].message.is_echo = true
 
       chai.request(server).post('/webhook').send(data).end((err, res) => {
         res.should.have.status(200)
+        expect(stub.calledWith('hello, world!')).to.be.false
         Messages.findAll().then((messages) => {
           messages.should.be.a('array')
-          messages.length.should.be.eql(0)
+          messages.length.should.be.eql(1)
           done()
         })
       })

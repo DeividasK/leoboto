@@ -23,7 +23,7 @@ class Webhook {
     let events = req.body.entry[0].messaging
 
     events.forEach((event) => {
-      if (event.message && event.message.text && ! event.message.is_echo) {
+      if (event.message && event.message.text) {
         // console.log()
         let data = {
           mId: event.message.mid,
@@ -38,7 +38,7 @@ class Webhook {
 
         db.create(data)
 
-        facebook.sendMessage(event.message.text)
+        if (! event.message.is_echo) facebook.sendMessage(event.message.text)
       }
     })
 
