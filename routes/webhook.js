@@ -23,8 +23,9 @@ class Webhook {
     let events = req.body.entry[0].messaging
 
     events.forEach((event) => {
+      winston.log(event)
+
       if (event.message && event.message.text) {
-        // console.log()
         let data = {
           mId: event.message.mid,
           senderId: event.sender.id,
