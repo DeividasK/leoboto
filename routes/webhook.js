@@ -1,9 +1,13 @@
 "use strict"
 
-const winston   = require('winston')
 const config    = require('config')
 const db        = require('../models').Messages
 const facebook  = require('../utilities/Facebook')
+const winston   = require('winston')
+
+winston.configure({
+  transports: [ new (winston.transports.File)({ filename: 'winston.log' }) ]
+})
 
 class Webhook {
   constructor () {
