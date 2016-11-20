@@ -100,6 +100,20 @@ describe('Webhook', () => {
       })
     })
 
+    it("should do nothing if message is an echo received from 'message_echoes' callback", (done) => {
+      let data = Object.assign({}, dummy)
+      data.entry[0].messaging[0].message.is_echo = true
+
+      chai.request(server).post('/webhook').send(data).end((err, res) => {
+        res.should.have.status(200)
+        Messages.findAll().then((messages) => {
+          messages.should.be.a('array')
+          messages.length.should.be.eql(0)
+          done()
+        })
+      })
+    })
+
     it("should do nothing if message is an attachment", (done) => {
       let data = Object.assign({}, dummy)
       data.entry[0].messaging[0].message.text = undefined

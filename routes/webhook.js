@@ -23,7 +23,7 @@ class Webhook {
     let events = req.body.entry[0].messaging
 
     events.forEach((event) => {
-      if (event.message && event.message.text) {
+      if (event.message && event.message.text && ! event.message.is_echo) {
         // console.log()
         let data = {
           mId: event.message.mid,

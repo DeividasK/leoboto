@@ -38,6 +38,14 @@ describe('Facebook', () => {
     it("should provide a callback for the response from the server", () => {
       expect(stub.args[0][2]).to.be.a('function')
     })
+
+    it("should provide a callback for the response from the server", () => {
+      expect(stub.args[0][2]).to.be.a('function')
+    })
+
+    xit("should log the server response through winston", () => {
+
+    })
   })
 
   xit("should throw and error if application access token is not set (the default is left unchanged)", () => {
